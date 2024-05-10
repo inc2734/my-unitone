@@ -19,6 +19,6 @@
 		"test": "run-s test:*",
 		"zip:pack": "rsync -a --exclude='.*' --exclude='node_modules' --exclude='vendor' --exclude='package.json' --exclude='package-lock.json' --exclude='composer.json' --exclude='composer.lock' . my-unitone",
 		"zip:archive": "zip -9 -qmr my-unitone.zip my-unitone",
-		"zip": "npm run zip:pack && wp-env start && npm run composer install -- --no-dev -d unitone && npm run zip:archive"
+		"zip": "npm run zip:pack && wp-env start && npm run composer install -- --no-dev -d my-unitone && npm run zip:archive"
 	}
 }
