@@ -17,8 +17,8 @@
 		"test:lint:php": "wp-env start && npm run composer lint",
 		"test:lint": "run-s test:lint:*",
 		"test": "run-s test:*",
-		"zip:pack": "rsync -a --exclude='.*' --exclude='node_modules' --exclude='vendor' --exclude='package.json' --exclude='package-lock.json' --exclude='composer.json' --exclude='composer.lock' . my-unitone",
+		"zip:pack": "rimraf my-unitone my-unitone.zip && rsync -a --exclude='.*' --exclude='node_modules' --exclude='vendor' --exclude='package.json' --exclude='package-lock.json' --exclude='composer.json' --exclude='composer.lock' --exclude='/my-unitone.zip' . my-unitone",
 		"zip:archive": "zip -9 -qmr my-unitone.zip my-unitone",
-		"zip": "npm run zip:pack && wp-env start && npm run composer install -- --no-dev -d my-unitone && npm run zip:archive"
+		"zip": "npm run zip:pack && npm run zip:archive"
 	}
 }
