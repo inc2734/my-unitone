@@ -17,9 +17,9 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
-  "autoload": {
-    "psr-4": {
-      "MyUnitone\\": ""
-    }
-  }
+	"autoload": {
+		"psr-4": {
+			"MyUnitone\\": ""
+		}
+	}
 }

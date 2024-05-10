@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: My unitone
- * Description: このプラグインに、あなたの unitone 用カスタマイズコードを書いてください。
+ * Description: Write your customization code for your unitone in this plugin.
  * Version: 0.1.0
  * Update URI: https://unitone.2inc.org
  *
