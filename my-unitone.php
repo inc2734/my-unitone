@@ -2,7 +2,7 @@
 /**
  * Plugin name: My unitone
  * Description: Write your customization code for your unitone in this plugin.
- * Version: 0.1.0
+ * Version: 0.1.1
  * Update URI: https://unitone.2inc.org
  *
  * @package my-unitone
