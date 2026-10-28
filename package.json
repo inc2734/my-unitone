@@ -1,15 +1,15 @@
 {
 	"engines": {
-		"node": ">=20.10.0",
-		"npm": ">=10.2.3"
+		"node": ">=24.22.1",
+		"npm": ">=11.19.1"
 	},
 	"volta": {
-		"node": "20.11.1"
+		"node": "24.22.1"
 	},
 	"author": "inc2734",
 	"license": "GPL-2.0+",
 	"devDependencies": {
-		"@wordpress/env": "^9.9.0",
+		"@wordpress/env": "^12.0.0",
 		"npm-run-all": "^4.1.5",
 		"rimraf": "^5.0.5"
 	},
@@ -17,13 +17,20 @@
 		"wp-env": "wp-env",
 		"start": "wp-env start && open http://localhost:8888",
 		"stop": "wp-env stop",
+		"destroy": "wp-env destroy && wp-env destroy --config=.wp-env.tests.json",
 		"cli": "wp-env run --env-cwd=wp-content/plugins/my-unitone cli",
 		"wp": "wp-env run --env-cwd=wp-content/plugins/my-unitone cli wp",
-		"composer": "wp-env run --env-cwd=\"wp-content/plugins/my-unitone\" cli composer",
+		"composer": "wp-env run --env-cwd=wp-content/plugins/my-unitone cli composer",
+		"test-composer": "wp-env run --config=.wp-env.tests.json --env-cwd=wp-content/plugins/my-unitone cli composer",
 		"clean:zip": "rimraf my-unitone.zip",
-		"test:lint:php": "wp-env start && npm run composer lint",
+		"test:php:start": "wp-env start --config=.wp-env.tests.json",
+		"test:php:stop": "wp-env stop --config=.wp-env.tests.json",
+		"pretest:php:lint": "npm run test:php:start && npm run test-composer -- install --no-interaction --prefer-dist --no-progress",
+		"test:php:lint": "wp-env run --config=.wp-env.tests.json --env-cwd=wp-content/plugins/my-unitone wordpress composer run-script lint",
+		"posttest:php:lint": "npm run test:php:stop",
+		"test:lint:php": "npm run test:php:lint || (test_status=$?; npm run test:php:stop; exit $test_status)",
 		"test:lint": "run-s test:lint:*",
-		"test": "run-s test:*",
+		"test": "run-s test:lint",
 		"zip:pack": "rimraf my-unitone my-unitone.zip && rsync -a --exclude='.*' --exclude='node_modules' --exclude='vendor' --exclude='package.json' --exclude='package-lock.json' --exclude='composer.json' --exclude='composer.lock' --exclude='/my-unitone.zip' . my-unitone",
 		"zip:archive": "zip -9 -qmr my-unitone.zip my-unitone",
 		"zip": "npm run zip:pack && npm run zip:archive"
